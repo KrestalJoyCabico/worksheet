@@ -58,14 +58,26 @@ x
 #6.*The following data shows the diesel fuel purchased by Mr.Cruz.
 #Create a data frame directly
 diesel <- data.frame(
-  Month = c("Jan", "Feb", "March", "Apr", "May", "June"),
-  Price_Per_Liter = c(52.50, 57.50, 60.00, 65.00, 74.25, 54.00),
-  Purchase_Quantity = c(25, 30, 40, 50, 10, 45)
+  month = c("Jan", "Feb", "March", "Apr", "May", "June"),
+  price_per_liter = c(52.50, 57.50, 60.00, 65.00, 74.25, 54.00),
+  purchase_quantity = c(25, 30, 40, 50, 10, 45)
 )
+
+
 #Print the data frame
+diesel <-data.frame(Month = month, Price_per_liter = price_per_liter,Purchase_quantity = purchased_quantity)
+
+df_transposed <- t(df)
+df_vertical<- as.data.frame(df_transposed)
+df_vertical
 diesel
 
-#Calculate the weighted mean of fuel expenditure
+#b. The average fuel expenditure of Mr. Cruz from Jan to June is 59.2625
+
+liter <- c(52.50,57.25,60.00,65.00,74.25,54.00)
+purchase <-c(25,30,40,50,10,45)
+expenditure_mean(liter,purchase)
+expenditure_mean
 
 average_expenditure <- weighted.mean(diesel$Price_per_liter, diesel$Purhased_quantity)
 #Print the average fuel expenditure
@@ -83,18 +95,25 @@ data
 #Create vectors according to the table.
 
 #a.Vectors using the data in the table.
-celebrities <-c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Speilberg", "Howard Stern",
- "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Sringteen", "Donald Trump", "Muhammad Ali", "Pau MacCartney", "George Lucas", 
- "Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Brad Pitt", "Peter Jackson", "Dr.Phil McGraw","Jay Lenon", "Celine Dion", "Kobe Bryant")
-power_ranking <-c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
-annual_pay <-c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31)
+TopCelebrity <- data.frame(Celebrities = c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Speilberg", "Howard Stern",
+ "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Sringteen", "Donald Trump", "Muhammad Ali", "Pau MacCartney", "George Lucas","Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Brad Pitt", "Peter Jackson", "Dr.Phil McGraw","Jay Lenon", "Celine Dion", "Kobe Bryant"),
+PowerRanking = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25),
+AnnualPay = c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31)
+)
+TopCelebrity
+
 
 #b. Modify the power ranking and pay of J.K Rowling.Change power ranking to 15 and pay to 90.]
+NewRanking<- replace(PowerRanking, 19, 15)
+NewRanking
+NewPay <- replace(AnnualPay, 19, 90)
+NewPay
 
-power_ranking [10] <-15
-annual_pay [19] <- 90
+Newtopceleb <-data.frame(PowerRanking = NewRanking,Celebrities,AnnualPay=NewPay)
+Newtopceleb
+
 
 #print modified  vectors
-print (celebrities)
-print (power_ranking)
-print (annual_pay)
+print (Celebrities)
+print (PowerRanking)
+print (AnnualPay)
