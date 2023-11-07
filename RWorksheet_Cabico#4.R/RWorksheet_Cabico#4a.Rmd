@@ -51,7 +51,7 @@ new_order_data <- factor(factor_data,levels = c("East","West","North"))
 new_order_data
 ```
 #5.
-``` {r num5}
+```{r num5}
 student_table <- read.table(file = 'import_march.csv', header = TRUE, sep = ',')
 student_table
 ```
@@ -103,7 +103,8 @@ students
 #B.
 ``` {r num8b}
 students$Average <- (students$Grade1 + students$Grade2 + students$Grade3 + students$Grade4) / 4
-
+total_average <- 0
+count <- 0
 for (i in 1:nrow(students)) {
   average <- (students$Grade1[i] + students$Grade2[i] + students$Grade3[i] + students$Grade4[i]) / 4
   if (students$Grade4[i] > 90) {
