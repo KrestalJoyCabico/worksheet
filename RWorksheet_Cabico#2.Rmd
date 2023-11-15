@@ -10,9 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r 1a}
 #1.Generate a sequence from -5 to 5.
-#output : [1] 1 2 3 4 5 6 7 8 9 10 11
-#If i use the:operator,the outut will be 1 to 11,but if i change:
 
+#If i use the:operator,the output will be 1 to 11,but if i change:
+seq(-5,5, by=1)
 
 sequence <- seq(-5:5)
 sequence
@@ -100,7 +100,7 @@ average_expenditure<- weighted.mean(diesel$Price_Per_Liter, diesel$Purchase_quan
 average_expenditure
 ```
  
-```{r 7a}
+```{r 7}
 #7.Create a vector data with 7 elements
 
 data <- c (length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers),
@@ -111,29 +111,82 @@ data
 #[6]    493.8708    135.0000   3710.0000
 
 #Create vectors according to the table.
-```{r 7b}
+```{r 8a}
 #a.Vectors using the data in the table.
-TopCelebrity <- data.frame(Celebrities = c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Speilberg", "Howard Stern",
- "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Sringteen", "Donald Trump", "Muhammad Ali", "Pau MacCartney", "George Lucas","Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Brad Pitt", "Peter Jackson", "Dr.Phil McGraw","Jay Lenon", "Celine Dion", "Kobe Bryant"),
-PowerRanking = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25),
-AnnualPay = c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31)
-)
-TopCelebrity
+Power_Ranking <- c(1:25)
+TopCelebrity <- c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Speilberg", "Howard Stern",
+ "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Sringteen", "Donald Trump", "Muhammad Ali", "Pau MacCartney", "George Lucas","Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Brad Pitt", "Peter Jackson", "Dr.Phil McGraw","Jay Lenon", "Celine Dion", "Kobe Bryant")
+Annual_Pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31)
+PowerRanking <- data.frame(Power_Ranking, TopCelebrity, Annual_Pay)
+PowerRanking
 ```
 
-```{r 7c}
-#b. Modify the power ranking and pay of J.K Rowling.Change power ranking to 15 and pay to 90.]
-NewRanking<- replace(PowerRanking, 19, 15)
-NewRanking
-NewPay <- replace(AnnualPay, 19, 90)
-NewPay
+```{r 8b}
+#b. Modify the power ranking and pay of J.K Rowling.Change power ranking to 15 and pay to 90.
+Power_Ranking [19] <-15 
+Power_Ranking
+Annual_Pay [19] <- 90
+Annual_Pay
 
-Newtopceleb <-data.frame(PowerRanking = NewRanking,Celebrities,AnnualPay=NewPay)
-Newtopceleb
 ```
-```{r 7c}
-#print modified  vectors
-print (Celebrities)
-print (PowerRanking)
-print (AnnualPay)
+
+
+
+
+
+
+#8
+``` {r 8c}
+library(readr)
+Forbes <- read_csv("Forbes  .csv", show_col_types = FALSE)
+Forbes
+```
+#9
+``` {r num9a}
+library(readxl)
+vienna <- read_excel("vienna.xlsx")
+vienna
+```
+``` {r num9b}
+dimensions <- dim(vienna)
+dimensions
+```
+```{r num9c}
+selected_columns <- vienna[, c("country", "neighbourhood", "price", "stars", "accommodation_type", "rating")]
+head(selected_columns, n = nrow(selected_columns))
+```
+
+```{r num9d}
+save(selected_columns, file = "new.RData")
+```
+
+```{r num9e}
+load("new.RData")
+head(selected_columns)
+tail(selected_columns)
+```
+#10
+
+``` {r 10a}
+vegetables <- list ("Spinach",  "Eggplant", "Okra", "Winged Bean", "Carrots", "Potato","Corn", "Cabbage", "Cucumber", "Tomato")
+
+
+vegetables
+```
+
+``` {r 10b}
+VegetablesList <- append(vegetables,c("Monggo Beans","Lettuce"),after=10)
+VegetablesList
+```
+
+``` {r 10c}
+NewVegetablesList <- append(VegetablesList,c("Squash", "String Beans", "Mushrooms", "Peas"),after=5)
+NewVegetablesList
+```
+
+```{r 10d}
+Veggies<-NewVegetablesList[c(-5,-10,-15)]
+Veggies
+
+length(Veggies)
 ```
