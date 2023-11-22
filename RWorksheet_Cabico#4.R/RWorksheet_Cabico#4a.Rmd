@@ -30,7 +30,7 @@ mean(data$Height)
 ```
 #D.
 ``` {r num1d}
-#Yes, because I observe that the taller you are the bigger shoe size you would have.
+#Yes, because some with higher heights have a big shoe size.
 ```
 #2. 
 ``` {r num2}

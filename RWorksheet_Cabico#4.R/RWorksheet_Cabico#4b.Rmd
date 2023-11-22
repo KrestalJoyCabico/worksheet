@@ -55,7 +55,49 @@ cat("\n")
 
 ```{r 4}
 library(readr)
-Sizes<-read.csv("/cloud/project/RWorksheet4/Sizes.csv",
-                show_col_types=FALSE)
-View (Sizes)
+Sizes <- read_csv("Sizes.csv")
+Sizes
+```
+
+``` {r 4a}
+Sizes <- read.csv("Sizes.csv")
+Sizes
+shoesize <- Sizes[c(1:6),]
+shoesize
+``` 
+
+
+``` {r 4b}
+male_subset <- Sizes[Sizes$Gender == "M", c("Shoe.size","Height")]
+female_subset <- Sizes[Sizes$Gender== "F", c("Shoe.size","Height")]
+male_subset
+female_subset
+```
+``` {r 4c}
+household <- read.csv("HouseholdData.csv")
+household
+ 
+gender_counts <- table(household$Sex)
+
+plot(1, type = "n", main = "Number of Males and Females in Household Data",
+     xlab = "Sex", ylab = "Count", xlim = c(-0.5,3.0), ylim = c(0, max(gender_counts)))
+
+barplot(gender_counts, col = c("blue", "red"), add = TRUE)
+
+legend("topright", legend = levels(as.factor(household$Sex)), fill = c("blue", "red"))
+
+
+```
+```{r 5}
+pie_chart  <- c(60, 10, 5, 25)
+pie(pie_chart,labels=paste0(pie_chart,"%"),
+    main = "Monthly Income of Dela Cruz Family ",
+    col =rainbow(length(pie_chart)))
+    legend("topleft",legend = c("Food", "Electricity", "Savings", "Miscellaneous"),fill=rainbow(length(pie_chart)))
+    
+```
+
+``` {r 6a}
+data<-(iris)
+str(iris)
 ```
