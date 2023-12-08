@@ -33,24 +33,23 @@ cat("\n")
 }
 ```
 ```{r 3}
-n<- as.numeric(readline("Enter the starting
-number for the Fibonacci sequence:"))
-
-a<-n
-b<-n
-
-cat(a,"")
-
-repeat{
-c<-a+b
-if(c>500){
-break
-}
-cat(c,"")
-a<-b
-b<-c
+input.number <- as.numeric(readline("Enter a number to start the Fibonacci sequence: "))
+assume.number <- 0
+x <- 0
+y <- 1
+repeat {
+  if (x > 500) {
+    break
+  }
+  if (x >= assume.number) {
+    cat(x, " ")
+  }
+  temp <- x + y
+  x <- y
+  y <- temp
 }
 cat("\n")
+
 ```
 
 ```{r 4}
@@ -100,4 +99,60 @@ pie(pie_chart,labels=paste0(pie_chart,"%"),
 ``` {r 6a}
 data<-(iris)
 str(iris)
+```
+``` {r 6b}
+meanIris<- colMeans(iris[,c("Sepal.Width","Petal.Length","Petal.Width")])
+print(meanIris)
+```
+``` {r 6c}
+specs<-table(iris$Species)
+
+clors<-c("lightpink","purple","skyblue")
+
+pie(specs,labels = paste(names(specs),"\n",
+        sprintf("%.1f%%",prop.table(specs)*100)),
+    col= clors,
+    main= "Species Distribution",
+    cex.main = 1.5,
+    cex =0.8)
+```
+``` {r 6d}
+SetSub <- subset(iris, Species == "setosa")
+VersiSub <- subset(iris, Species == "versicolor")
+VirgiSub <- subset(iris, Species == "virginica")
+
+# Display the last six rows of each species
+cat("Last six rows of Setosa:")
+print(tail(SetSub))
+
+cat("Last six rows of Versicolor:")
+print(tail(VersiSub))
+
+cat("Last six rows of Virginica:")
+print(tail(VirgiSub))
+```
+``` {r num6e}
+
+data(iris)
+
+iris$Species <- as.factor(iris$Species)
+
+plot(iris$Sepal.Length, iris$Sepal.Width,
+     pch = as.integer(iris$Species),
+     col = iris$Species,
+     main = "Iris Dataset",
+     sub = "Sepal width and length",
+     xlab = "Sepal Length",
+     ylab = "Sepal Width"
+)
+```
+
+``` {r num6f}
+#The scatterplot shows similarities between the sepal width and length ranging from 5.5 to 7.0
+```
+
+```{r num7a}
+library(readxl)
+alexa_file <- read_excel("alexa_file.xlsx")
+alexa_file
 ```
