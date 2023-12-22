@@ -1,0 +1,64 @@
+---
+title: "Group 10"
+author: "Krestal Joy Cabico, Jermalyn Guanco , Sharrene Sante"
+date: "2023-12-22"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Reviews}
+
+#install.packages("rvest")
+
+library(rvest)
+url <-"https://www.amazon.com/iBayam-195-Pack-Painting-Supplies-Sketchbook/dp/B0CD7172JT/ref=sr_1_1_sspa?qid=1703244571&s=arts-crafts-intl-ship&sr=1-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGZfYnJvd3Nl&th=1"
+url
+
+scrape <- read_html (url)
+```
+```{r}
+
+scrape_amazon_reviews <- function(url, max_reviews= 300) {
+
+scrape <- read_html(url)
+
+username <- scrape %>%
+
+html_nodes(".a-profile-name") %>%
+
+html_text()
+
+ratings <- scrape %>%
+
+html_nodes (".review-rating") %>%
+
+html_text()
+
+reviews <- scrape %>%
+
+html_nodes(".review-text-content span") %>%
+
+html_text()
+
+# Find the minimum length among the vectors
+
+min_length <- min(length (username), length(ratings), length(reviews))
+
+# Create a data frame only with complete rows 
+
+data <- data.frame(
+Username = username[1:min_length], 
+Ratings = ratings[1:min_length],
+Reviews = reviews[1:min_length]
+)
+
+return(data)
+}
+
+reviews_data <- scrape_amazon_reviews(url, max_reviews = 300)
+reviews_data
+```
+
